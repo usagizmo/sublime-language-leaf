@@ -1,0 +1,31 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: HTML (Leaf)
+scopeName: text.html.leaf
+fileTypes: [leaf, lf, lef]
+uuid: 95484ff0-9b11-47c7-aa6b-90eeff6eb3ed
+
+patterns:
+- include: '#variable'
+- include: '#tag'
+- include: text.html.basic
+
+repository:
+  tag:
+    match: (#{1,2})(\w*)?(\({1,})([^)]*)(\){1,})\s*
+    captures:
+      '1': {name: keyword.control.leaf}
+      '2': {name: entity.name.tag.leaf}
+      '3': {name: constant.other.begin.leaf}
+      '4': {name: string.quoted.double.html}
+      '5': {name: constant.other.end.leaf}
+    name: meta.tag.leaf
+  variable:
+    match: (#{1,2})(\({1,})([^)]*)(\))
+    captures:
+      '1': {name: keyword.control.leaf}
+      '2': {name: constant.other.begin.leaf}
+      '3': {name: string.quoted.double.htm}
+      '4': {name: constant.other.end.leaf}
+    name: meta.variable.leaf
+...
